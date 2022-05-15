@@ -5,6 +5,16 @@ import ShmonstersContext from "./components/ShmonstersContext";
 import Gallery from "./components/Gallery";
 import Button from "@mui/material/Button";
 import { ERC721ABI as abi } from "./components/ERC721ABI";
+import AppBar from "@mui/material/AppBar";
+
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import Container from "@mui/material/Container";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const SHM_CONTRACT = "0x406bC9Fd7D3Bfcb6b0d102FdE21BFF7E5E9F2b9A";
 
@@ -91,6 +101,12 @@ function Address({ userAddress }) {
   );
 }
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 function App() {
   const [wallet, setShmWallet] = useState([]);
   const [account, setAccount] = useState("");
@@ -148,30 +164,83 @@ function App() {
   //   });
   // }, [account]);
 
-
   return (
     <div className="App">
+        <ThemeProvider theme={darkTheme}>
       <header className="App-header">
         <ShmonstersContext.Provider value={value}>
-          {account === "" ? (
-            <MetaMaskAuth onAddressChanged={onAddressChanged}></MetaMaskAuth>
-          ) : (
-            <>
-              <Gallery />
-              <Button
-                variant="contained"
-                onClick={() => {
-                  console.log("logout");
-                  setAccount("");
-                }}
+          <GlobalStyles
+            styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
+          />
+          <CssBaseline />
+          <AppBar
+            position="static"
+            color="default"
+            elevation={0}
+            sx={{
+              borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+            }}
+          >
+            <Toolbar sx={{ flexWrap: "wrap" }}>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
               >
-                {" "}
-                Logout
-              </Button>
-            </>
-          )}
+                ShMonsters
+              </Typography>
+              <nav>
+                <Link
+                  variant="button"
+                  color="text.primary"
+                  href="#"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  Features
+                </Link>
+                <Link
+                  variant="button"
+                  color="text.primary"
+                  href="#"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  Enterprise
+                </Link>
+                <Link
+                  variant="button"
+                  color="text.primary"
+                  href="#"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  Support
+                </Link>
+              </nav>
+              {account === "" ? (
+                <MetaMaskAuth
+                  onAddressChanged={onAddressChanged}
+                ></MetaMaskAuth>
+              ) : (
+                <>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      console.log("logout");
+                      setAccount("");
+                    }}
+                  >
+                    {" "}
+                    Logout
+                  </Button>
+                </>
+              )}
+            </Toolbar>
+          </AppBar>
+          <Gallery />
         </ShmonstersContext.Provider>
       </header>
+      </ThemeProvider>
+
     </div>
   );
 }

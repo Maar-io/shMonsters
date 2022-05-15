@@ -8,7 +8,7 @@ import { ShmonstersContext } from "./ShmonstersContext";
 export default function ScoreCard(props) {
   const { wallet } = useContext(ShmonstersContext);
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 400 }} raised s>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           <p> NFTs: {wallet.length} </p>

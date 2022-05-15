@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function MonsterCards(props) {
+
   const getMetadata = async () => {
     const nftLink = props.nftUrl + props.nftId + ".json";
     try {
@@ -26,17 +27,18 @@ export default function MonsterCards(props) {
     })();
   });
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 400 }} raised>
       <CardMedia
         component="img"
-        height="345"
+        height="250"
         image={
           "https://bafybeigcjujjjshpxecnqlsxobkzv76njzfljvgpd7xu33qywfom7q3ybq.ipfs.dweb.link/" +
           props.nftId +
           ".png"
         }
-        alt="green iguana"
-        margin="5"
+        title={props.nftId}
+        alt="Shmonster nft image"
+        margin="4"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -47,8 +49,14 @@ export default function MonsterCards(props) {
         </Typography>
       </CardContent>
       <CardActions>
+        <Button size="small">Monster</Button>
+        <Button size="small">Shiden</Button>
+        <Button size="small">Beauty</Button>
+      </CardActions>
+      <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Sell</Button>
+        <Button size="small">Like</Button>
       </CardActions>
     </Card>
   );
