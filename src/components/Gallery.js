@@ -20,7 +20,7 @@ import {
   CenterFocusStrongOutlined,
 } from "@mui/icons-material";
 
-const SHMONSTERS_URL =
+const SHMONSTERS_IPFS =
   "https://bafybeiezurc3dpn7wy6jkjotjuw5jcvmefnoqip2wivz5rkj3uzga6uzqu.ipfs.dweb.link/";
 
 export default function Gallery(props) {
@@ -40,11 +40,11 @@ export default function Gallery(props) {
       </Grid>
     </Container>
         <Divider />
-    <Container maxWidth="md" component="gallery" direction="raw">
+    <Container maxWidth="md" component="gallery" >
       <Grid container spacing={4} >
         {wallet.map((nft) => (
-          <Grid item xs={4}>
-            <MonsterCards key={nft} nftId={nft} nftUrl={SHMONSTERS_URL} />
+          <Grid item xs={4} style={{minWidth: "250px"}}>
+            <MonsterCards key={nft} nftId={nft} nftIpfs={SHMONSTERS_IPFS} nftContract={props.nftContract}/>
           </Grid>
         ))}
       </Grid>

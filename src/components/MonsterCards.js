@@ -6,11 +6,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Link from '@mui/material/Link';
+
+import TwitterIcon from '@mui/icons-material/Twitter';
+import SellIcon from '@mui/icons-material/Sell';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 export default function MonsterCards(props) {
 
   const getMetadata = async () => {
-    const nftLink = props.nftUrl + props.nftId + ".json";
+    const nftLink = props.nftIpfs + props.nftId + ".json";
     try {
       let response = await fetch(nftLink);
       let responseJson = await response.json();
@@ -54,9 +60,11 @@ export default function MonsterCards(props) {
         <Button size="small">Beauty</Button>
       </CardActions>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Sell</Button>
-        <Button size="small">Like</Button>
+        <TwitterIcon/>
+        <Link href={"https://tofunft.com/nft/shiden/" + props.nftContract + "/" + props.nftId}  target="_blank" >
+        <SellIcon/>
+</Link>
+        <FavoriteIcon/>
       </CardActions>
     </Card>
   );

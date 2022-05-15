@@ -236,7 +236,7 @@ function App() {
               )}
             </Toolbar>
           </AppBar>
-          <Gallery />
+          <Gallery nftContract={SHM_CONTRACT.replace('/0x', '')}/>
         </ShmonstersContext.Provider>
       </header>
       </ThemeProvider>
