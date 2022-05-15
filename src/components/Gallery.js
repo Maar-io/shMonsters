@@ -8,8 +8,8 @@ import Divider from "@mui/material/Divider";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Grid from "@mui/material/Grid";
 import StarIcon from "@mui/icons-material/StarBorder";
@@ -24,7 +24,6 @@ const SHMONSTERS_IPFS =
   "https://bafybeiezurc3dpn7wy6jkjotjuw5jcvmefnoqip2wivz5rkj3uzga6uzqu.ipfs.dweb.link/";
 
 export default function Gallery(props) {
-
   const { wallet } = useContext(ShmonstersContext);
   console.log("walletSize", wallet.length);
   const addMonster = () => {
@@ -32,23 +31,43 @@ export default function Gallery(props) {
   };
   return (
     <>
-    <Container maxWidth="md" component="score">
-      <Grid container spacing={4} xs={12} alignItems="center" direction="column" style={{ minHeight: '30vh' }}>
-        <Grid item>
-          <ScoreCard monsterCnt={5} />
-        </Grid>
-      </Grid>
-    </Container>
-        <Divider />
-    <Container maxWidth="md" component="gallery" >
-      <Grid container spacing={4} >
-        {wallet.map((nft) => (
-          <Grid item xs={4} style={{minWidth: "250px"}}>
-            <MonsterCards key={nft} nftId={nft} nftIpfs={SHMONSTERS_IPFS} nftContract={props.nftContract}/>
+      <Container maxWidth="md" component="gallery">
+        <Grid
+          container
+          spacing={4}
+          xs={6}
+          alignItems="center"
+          style={{ minHeight: "30vh" }}
+        >
+          <Grid item spacing={4}>
+            <ScoreCard monsterCnt={5} />
           </Grid>
-        ))}
-      </Grid>
-    </Container>
+          <Grid item spacing={4}>
+            <Card spacing={2} sx={{ maxWidth: 400 }} raised>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  <p> ShidenPass </p>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+      <Divider />
+      <Container maxWidth="md" component="gallery">
+        <Grid container spacing={4}>
+          {wallet.map((nft) => (
+            <Grid item xs={4} style={{ minWidth: "250px" }}>
+              <MonsterCards
+                key={nft}
+                nftId={nft}
+                nftIpfs={SHMONSTERS_IPFS}
+                nftContract={props.nftContract}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </>
   );
 }

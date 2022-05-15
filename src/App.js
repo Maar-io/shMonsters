@@ -182,6 +182,7 @@ function App() {
             }}
           >
             <Toolbar sx={{ flexWrap: "wrap" }}>
+            <img src="favicon.ico" alt="logo"/>
               <Typography
                 variant="h6"
                 color="inherit"
